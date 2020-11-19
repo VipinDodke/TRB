@@ -1,0 +1,38 @@
+{% extends 'blog/basic.html' %}
+{%block title%}ContactPage{%endblock%}
+{%block css%}
+.container, .container-lg, .container-md, .container-sm, .container-xl
+{
+    max-width: 500px;
+}
+
+{%endblock%}
+
+{%block body%}
+  <div class="container">
+    <h3>Contact Us</h3>
+    <form action="/blog/contact/" method="post">{% csrf_token %}
+    	<div class="container col-md-6 mb-3 my-5">
+          <label for="name">Full Name</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Jone Wikee" required>
+        </div>
+      <div class="container conform-group ">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+      </div>
+      <div class="container form-group my-4 ">
+        <label for="call">Phone</label>
+        <input type="tel" class="form-control" id="call" name="call" placeholder="Phone number" required>
+        </div>
+        <div class="container form-group">
+        <div class="form-group mx-5 ">
+        <label for="desc">You'r Feedback</label>
+        <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+</div>
+
+{%endblock%}
+

@@ -1,0 +1,100 @@
+{% extends 'blog/basic.html' %}
+{%block title%}BlogHinglish{%endblock%}
+{%block css%}
+      
+      .container info{
+        color: #330000;
+        
+      }
+      .container info h1{
+        font-family: 'Sofia';font-size: 60px;
+        letter-spacing: 10px;
+
+      }
+      .container info p{
+        color: #330000;
+        font-size: 15px;
+        
+      }
+
+element.style {
+}
+.mb-1, .my-1 {
+    margin-bottom: .25rem!important;
+}
+.mt-1, .my-1 {
+    margin-top: .25rem!important;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+video[Attributes Style] {
+    width: 150px;
+}
+user agent stylesheet
+video {
+    object-fit: contain;
+}
+body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    background-color: #fff;
+}
+{%endblock%}
+
+{%block body%}
+<div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://source.unsplash.com/1600x130/?Dark" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://source.unsplash.com/1600x130/?Hack" alt="...">
+       <div class="carousel-caption d-none d-md-block">
+        <h5>Second slide label</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://source.unsplash.com/1600x130/?Coding" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Third slide label</h5>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      </div>
+    </div>
+  </div>
+  <a href="/blog/video/"><button type="button" class="btn btn-outline-dark">English</button></a>
+  {%load static%}
+  {% for j in t_blog reversed %}      
+
+        <div class="container row shadow mx-4 my-1">
+            <div class="container info mx-5">
+                {%if j.TypeBlog > 0%}
+                    <video class="v my-1" width="150px" controls poster="{%static 'blog/V image.jpg' %}">
+                        <source src='/media/{{j.video}}' type="video/mp4">
+                    </video>
+                {%else%}
+                    <img class="jj" width="150px" src='/media/{{j.image}}'>
+                {%endif%}
+            </div>
+            <div class="container info mx-5">
+                 <h1>{{j.blog_name}}</h1><br>
+                 <p>{{j.post_date}}<br>{{j.desc1}}</p>
+            </div>
+        </div><br>
+  {%endfor%}
+{%endblock%}
