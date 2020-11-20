@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import models, User
 
 # Create your models here.
 class page(models.Model):
@@ -10,8 +11,25 @@ class page(models.Model):
     TypeBlog=models.IntegerField(default=0)
     image=models.ImageField(upload_to="blog/images",default="")
     video=models.FileField(upload_to="blog/video",default='')
+    liked =models.ManyToManyField(User, default=None, blank=True, related_name='liked')
     def __str__(self):
         return self.blog_name
+
+    @property
+    def num_like(self):
+        return self.liked.all().count()
+
+Like_CHOICES=(
+    ('Like','Like'),
+    ('Unlike','Unlike'),
+)
+class Like(models.Model):
+    user =  models.ForeignKey(User, on_delete=models.CASCADE)
+    post =  models.ForeignKey(page, on_delete=models.CASCADE)
+    value = models.CharField(choices=Like_CHOICES, default='Like',max_length=10)
+
+    def __str__(self):
+        return str(self.post)
 
 
 class Contect(models.Model):

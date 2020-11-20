@@ -97,16 +97,30 @@ body {
         <div class="container row shadow mx-4 my-1">
             <div class="container info mx-5">
                 {%if i.TypeBlog > 0%}
+                    <h1>{{i.blog_name}}</h1><br>
                     <video class="v my-1" width="150px" controls poster="{%static 'blog/V image.jpg' %}">
                         <source src='/media/{{i.video}}' type="video/mp4">
                     </video>
                 {%else%}
+                    <h1>{{i.blog_name}}</h1><br>
                     <img class="jj" width="150px" src='/media/{{i.image}}'>
                 {%endif%}
             </div>
             <div class="container info mx-5">
-                 <h1>{{i.blog_name}}</h1><br>
-                 <p>{{i.post_date}}<br>{{i.desc}}</p>
+                 <p>{{i.desc}}<br>{{i.post_date}}</p>
+                <form action="{% url 'video:like-post'%}" method='POST' class="ui form">
+                  <input type="hidden" name='post_id' value="{{i.id}}">
+                  {% csrf_token %}
+                  {% if user not in i.liked.all %}
+                      
+                      <button type="submit" class="btn btn-outline-success">Like</button>
+
+                  {%else%}
+                  <button type="submit" class="btn btn-outline-danger">Unlike</button>
+                  {% endif %}
+                  <strong>{{i.liked.all.count}}Like</strong>
+                 </form>
+                 
             </div>
         </div><br>
       </div>
